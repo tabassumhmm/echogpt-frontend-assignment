@@ -1,0 +1,17 @@
+Assignment.txt
+PLAN.md
+.omo/
+
+# Dependencies and generated output
+node_modules/
+.next/
+out/
+dist/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Local environment files
+.env*
+!.env.example
