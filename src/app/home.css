@@ -1,0 +1,225 @@
+.home-hero {
+	min-height: min(48rem, calc(100vh - 4.5rem));
+	display: grid;
+	grid-template-columns: minmax(0, 1.05fr) minmax(20rem, 0.95fr);
+	align-items: center;
+	gap: clamp(3rem, 8vw, 7rem);
+}
+
+.home-hero-copy {
+	position: relative;
+}
+
+.home-hero-copy::before {
+	content: "";
+	position: absolute;
+	inset-block-start: -5rem;
+	inset-inline-start: -4rem;
+	width: 9rem;
+	height: 9rem;
+	border: 1px solid var(--color-border);
+	border-radius: 50%;
+	opacity: 0.7;
+	pointer-events: none;
+}
+
+.home-hero h1 {
+	max-width: 9ch;
+	font-size: clamp(3.2rem, 7vw, 5.6rem);
+}
+
+.home-lede {
+	max-width: 36rem;
+	margin-block: 1.6rem 2rem;
+	color: var(--color-text-muted);
+	font-size: clamp(1.1rem, 2vw, 1.35rem);
+}
+
+.home-actions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+}
+
+.home-facts {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem 1.4rem;
+	margin: 2rem 0 0;
+	padding: 0;
+	color: var(--color-text-subtle);
+	font-family: var(--font-mono);
+	font-size: 0.74rem;
+	list-style: none;
+	text-transform: uppercase;
+}
+
+.home-facts li::before {
+	content: "✓ ";
+	color: var(--color-success);
+}
+
+.home-preview {
+	position: relative;
+	border: 1px solid var(--color-border-strong);
+	border-radius: var(--radius-lg);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-soft);
+	transform: rotate(1deg);
+}
+
+.home-preview::after {
+	content: "";
+	position: absolute;
+	inset: 0.5rem -0.5rem -0.5rem 0.5rem;
+	z-index: -1;
+	border: 1px solid var(--color-border);
+	border-radius: inherit;
+}
+
+.preview-topline,
+.preview-footer {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding: 0.9rem 1rem;
+	color: var(--color-text-muted);
+	font-family: var(--font-mono);
+	font-size: 0.74rem;
+}
+
+.preview-topline {
+	border-block-end: 1px solid var(--color-border);
+}
+
+.preview-dot {
+	width: 0.55rem;
+	height: 0.55rem;
+	border-radius: 50%;
+	background: var(--color-accent);
+}
+
+.preview-status {
+	margin-inline-start: auto;
+}
+
+.preview-body {
+	display: grid;
+	gap: 0.7rem;
+	min-height: 22rem;
+	align-content: start;
+	padding: clamp(1.25rem, 4vw, 2.25rem);
+}
+
+.preview-body p {
+	max-width: 32rem;
+	margin: 0;
+}
+
+.preview-body .preview-label {
+	margin-block-start: 0.8rem;
+	color: var(--color-accent);
+	font-family: var(--font-mono);
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+}
+
+.preview-footer {
+	justify-content: space-between;
+	border-block-start: 1px solid var(--color-border);
+}
+
+.home-principles,
+.home-flow {
+	border-block-start: 1px solid var(--color-border);
+}
+
+.home-section-heading {
+	max-width: 46rem;
+	margin-block-end: clamp(2rem, 5vw, 3.5rem);
+}
+
+.principle-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1px;
+	overflow: hidden;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	background: var(--color-border);
+}
+
+.principle {
+	min-height: 17rem;
+	padding: clamp(1.25rem, 3vw, 2rem);
+	background: var(--color-surface);
+}
+
+.principle-number,
+.flow-list > li > span {
+	color: var(--color-accent);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.principle h3 {
+	margin-block: 3rem 0.75rem;
+}
+
+.principle p,
+.flow-list p {
+	color: var(--color-text-muted);
+}
+
+.flow-list {
+	margin: 0;
+	padding: 0;
+	border-block-start: 1px solid var(--color-border);
+	list-style: none;
+}
+
+.flow-list > li {
+	display: grid;
+	grid-template-columns: 4rem minmax(0, 1fr);
+	gap: 1.5rem;
+	padding-block: 1.6rem;
+	border-block-end: 1px solid var(--color-border);
+}
+
+.flow-list h3,
+.flow-list p {
+	margin: 0;
+}
+
+.home-extension {
+	display: grid;
+	grid-template-columns: minmax(0, 1.2fr) minmax(16rem, 0.8fr) auto;
+	align-items: end;
+	gap: 2rem;
+	border-block: 1px solid var(--color-border);
+}
+
+.home-extension h2,
+.home-extension p {
+	margin: 0;
+}
+
+.home-extension p {
+	color: var(--color-text-muted);
+}
+
+.home-final {
+	text-align: center;
+}
+
+.home-final h2 {
+	max-width: 14ch;
+	margin-inline: auto;
+}
+
+.home-final .button {
+	margin-block-start: 1rem;
+}

@@ -1,0 +1,159 @@
+.extension-page {
+	display: grid;
+	gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.extension-intro {
+	max-width: 54rem;
+}
+
+.extension-intro h1 {
+	max-width: 13ch;
+	font-size: clamp(3rem, 8vw, 6.2rem);
+}
+
+.extension-intro > p:not(.eyebrow) {
+	max-width: 44rem;
+	color: var(--color-ink-muted);
+	font-size: clamp(1.05rem, 2vw, 1.3rem);
+}
+
+.extension-principles {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.65rem;
+	margin-block-start: 1.5rem;
+}
+
+.extension-principles span,
+.memory-badge {
+	padding: 0.35rem 0.65rem;
+	border: 1px solid var(--color-border);
+	border-radius: 999px;
+	background: var(--color-surface);
+	color: var(--color-ink-muted);
+	font-family: var(--font-plex-mono);
+	font-size: 0.7rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+}
+
+.extension-layout {
+	display: grid;
+	grid-template-columns: minmax(16rem, 0.75fr) minmax(22rem, 1.25fr);
+	gap: clamp(2rem, 6vw, 5rem);
+	align-items: start;
+}
+
+.extension-explain {
+	position: sticky;
+	inset-block-start: 6rem;
+}
+
+.extension-explain h2 {
+	max-width: 12ch;
+	font-size: clamp(2.2rem, 4vw, 3.6rem);
+}
+
+.extension-explain ol {
+	display: grid;
+	gap: 0;
+	margin: 2rem 0;
+	padding: 0;
+	list-style: none;
+	border-block-start: 1px solid var(--color-border);
+}
+
+.extension-explain li {
+	display: grid;
+	grid-template-columns: 2.6rem 1fr;
+	gap: 1rem;
+	padding-block: 1.1rem;
+	border-block-end: 1px solid var(--color-border);
+}
+
+.extension-explain li > span {
+	color: var(--color-accent);
+	font-family: var(--font-plex-mono);
+	font-size: 0.75rem;
+	font-weight: 700;
+}
+
+.extension-explain li p,
+.extension-boundary {
+	margin-block-end: 0;
+	color: var(--color-ink-muted);
+}
+
+.extension-boundary {
+	padding: 1rem;
+	border-left: 3px solid var(--color-accent);
+	background: var(--color-accent-soft);
+	font-size: 0.9rem;
+}
+
+.extension-window {
+	overflow: hidden;
+	border: 1px solid var(--color-border-strong);
+	border-radius: clamp(1.25rem, 3vw, 2rem);
+	background: var(--color-surface-raised);
+	box-shadow: var(--shadow-float);
+}
+
+.extension-toolbar {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	align-items: center;
+	padding: 1rem 1.1rem;
+	border-block-end: 1px solid var(--color-border);
+	background: var(--color-surface);
+}
+
+.extension-toolbar [data-slot="tabs-list"] {
+	min-height: 2.5rem;
+}
+
+.extension-pane {
+	min-height: 30rem;
+	padding: clamp(1rem, 3vw, 1.5rem);
+}
+
+.extension-chat-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1.15fr) minmax(17rem, 0.85fr);
+	gap: clamp(1.25rem, 3vw, 2rem);
+	align-items: start;
+}
+
+.extension-notice {
+	min-height: 2.6rem;
+	margin: 0;
+	padding: 0.75rem 1.1rem;
+	border-block-start: 1px solid var(--color-border);
+	background: var(--color-surface);
+	color: var(--color-ink-muted);
+	font-family: var(--font-plex-mono);
+	font-size: 0.7rem;
+}
+
+.extension-window[data-compact="true"] .extension-pane {
+	min-height: 25rem;
+	padding-block: 1rem;
+}
+
+.extension-window[data-compact="true"] [data-slot="card"] {
+	--tw-shadow-sm: none;
+}
+
+@media (max-width: 62rem) {
+	.extension-layout,
+	.extension-chat-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.extension-explain {
+		position: static;
+	}
+}

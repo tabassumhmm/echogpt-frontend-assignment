@@ -1,0 +1,48 @@
+.preferences-panel {
+	position: sticky;
+	inset-block-start: 5.5rem;
+	display: grid;
+	gap: 1.25rem;
+	padding: 1.25rem;
+}
+
+.preference-field {
+	display: grid;
+	gap: 0.45rem;
+}
+
+.preference-field > p,
+.preference-note p {
+	margin-block-end: 0;
+	color: var(--color-text-muted);
+	font-size: 0.8rem;
+}
+
+.range-label,
+.range-ends {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+}
+
+.range-label output {
+	font-family: var(--font-mono);
+	font-size: 0.8rem;
+}
+
+.temperature-range {
+	width: 100%;
+	accent-color: var(--color-accent);
+}
+
+.range-ends {
+	color: var(--color-text-subtle);
+	font-size: 0.72rem;
+}
+
+.preference-note {
+	padding: 0.85rem;
+	border-radius: var(--radius-md);
+	background: var(--color-surface-muted);
+	font-size: 0.85rem;
+}

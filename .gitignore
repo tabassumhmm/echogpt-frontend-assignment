@@ -1,9 +1,13 @@
 Assignment.txt
 PLAN.md
 .omo/
+DESIGN.md
+REFERENCE-AUDIT.md
+.mission/
 
 # Dependencies and generated output
 node_modules/
+.codegraph/
 .next/
 out/
 dist/

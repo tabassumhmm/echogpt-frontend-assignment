@@ -1,0 +1,59 @@
+@media (max-width: 64rem) {
+	.workspace-header {
+		grid-template-columns: 1fr;
+		align-items: start;
+	}
+
+	.workspace-utility {
+		justify-items: start;
+	}
+
+	.model-switcher {
+		grid-template-columns: 1fr;
+	}
+
+	.workspace-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.preferences-panel {
+		position: static;
+	}
+}
+
+@media (max-width: 40rem) {
+	.model-options {
+		grid-template-columns: 1fr;
+	}
+
+	.model-options button {
+		min-height: auto;
+	}
+
+	.message-list {
+		max-height: none;
+		padding: 0.85rem;
+	}
+
+	.message {
+		width: 100%;
+	}
+
+	.conversation-header,
+	.composer-actions {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+
+	.composer-actions > div,
+	.workspace-utility > div,
+	.response-actions {
+		width: 100%;
+	}
+
+	.composer-actions .button,
+	.workspace-utility .button,
+	.response-actions .button {
+		flex: 1 1 100%;
+	}
+}

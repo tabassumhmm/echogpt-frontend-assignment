@@ -1,0 +1,27 @@
+@media (max-width: 38rem) {
+	.extension-window {
+		border-radius: var(--radius-lg);
+	}
+
+	.extension-toolbar {
+		align-items: stretch;
+		flex-direction: column;
+	}
+
+	.extension-toolbar [data-slot="tabs-list"] {
+		width: 100%;
+	}
+
+	.extension-pane {
+		min-height: 0;
+		padding: 0.85rem;
+	}
+
+	.extension-notice {
+		padding-inline: 0.85rem;
+	}
+
+	.memory-badge {
+		align-self: flex-start;
+	}
+}

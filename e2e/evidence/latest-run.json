@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "command": "pnpm test:e2e:evidence",
+  "baseUrl": "http://127.0.0.1:3000",
+  "environment": {
+    "node": "v22.23.3",
+    "pnpm": "10.15.0",
+    "commit": "66a853656c8b996b6c7df3c7bab70cb850de904b",
+    "dirtyWorktree": true
+  },
+  "timestamps": {
+    "startedAtUtc": "2026-09-25T14:58:50.821Z",
+    "finishedAtUtc": "2026-09-25T14:59:23.640Z"
+  },
+  "totals": {
+    "tests": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0
+  },
+  "failedTestIds": [],
+  "coverage": {
+    "routes": [
+      "/",
+      "/extension",
+      "/workspace"
+    ],
+    "viewports": [
+      "1024x768",
+      "1440x900",
+      "360x800",
+      "768x1024"
+    ],
+    "states": [
+      "default route",
+      "interactive responsive workspace",
+      "local history, model switch, send, stop, import/export, context panel",
+      "six quick actions, isolated history, settings, global reset"
+    ]
+  },
+  "accessibility": {
+    "scans": 14,
+    "violations": []
+  },
+  "artifacts": {
+    "playwrightConfigSha256": "58efb264242f8a6c67ff3be0be8ac84ca8f5079ffd43302752bec47e551c0f30",
+    "e2eSpecSha256": "f647f286def330d73c7573e154421c50764a163c38c5114ef5e2c4929ba22c0d",
+    "manifest": "e2e/evidence/latest-run.json"
+  }
+}

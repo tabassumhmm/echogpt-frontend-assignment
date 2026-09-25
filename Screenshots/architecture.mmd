@@ -1,0 +1,49 @@
+flowchart LR
+  classDef surface fill:#ffffff,stroke:#6857e2,stroke-width:1.5px,color:#1d1b20;
+  classDef shared fill:#f1eefc,stroke:#6857e2,stroke-width:1.5px,color:#1d1b20;
+  classDef data fill:#eef5f0,stroke:#39705a,stroke-width:1.5px,color:#1d1b20;
+  classDef action fill:#fff7f7,stroke:#a33f45,stroke-width:1.5px,color:#1d1b20;
+  classDef evidence fill:#fff4dc,stroke:#9a6b17,stroke-width:1.5px,color:#1d1b20;
+
+  subgraph browser["Browser-only runtime · no backend or server APIs"]
+    direction TB
+    shell["Next.js App Router shared root layout<br/>theme provider · header · footer<br/>semantic tokens · shadcn primitives"]
+    landing["/ · marketing landing<br/>server-rendered content · product preview"]
+    workspace["/workspace · chat workspace<br/>history · composer · model/context panels"]
+    extension["/extension · simulator<br/>quick actions · sessions · settings"]
+    features["Interactive route features<br/>workspace history management · extension actions/settings"]
+    shared["Shared client modules<br/>typed storage + versioned import/export<br/>demo model catalog · deterministic scripted responses<br/>no live provider calls"]
+    state[("Browser localStorage · echogpt.demo.v1 · version 1<br/>workspaceConversations · extensionSessions<br/>shared theme/model/stream/UI preferences")]
+    reset["Confirmed global reset<br/>clears both histories and shared preferences"]
+
+    shell --> landing
+    shell --> workspace
+    shell --> extension
+    workspace --> features
+    extension --> features
+    features --> shared
+    shared -->|"persist / validate / migrate"| state
+    reset -->|"clear all demo data"| state
+  end
+
+  subgraph verification["Verification evidence · no runtime dependency"]
+    direction TB
+    journeys["Playwright Chromium journeys<br/>workspace history + extension isolation"]
+    matrix["Viewport coverage<br/>360×800 · 768×1024<br/>1024×768 · 1440×900"]
+    axe["@axe-core/playwright<br/>14 serious/critical scans · 0 violations"]
+    captures["Six approved route captures<br/>landing / workspace / extension<br/>mobile + desktop PNG"]
+    report["e2e/evidence/latest-run.json<br/>3 tests passed · 0 failed<br/>routes, states, and viewports recorded"]
+
+    journeys --> matrix
+    matrix --> axe
+    axe --> captures
+    journeys --> report
+    axe --> report
+  end
+
+  browser -. "routes rendered and exercised" .-> journeys
+
+  class shell,landing,workspace,extension,features surface;
+  class shared,state data;
+  class reset action;
+  class journeys,matrix,axe,captures,report evidence;
