@@ -4,7 +4,6 @@ PLAN.md
 DESIGN.md
 REFERENCE-AUDIT.md
 .mission/
-tabassum-credential.cmd
 
 # Dependencies and generated output
 node_modules/
