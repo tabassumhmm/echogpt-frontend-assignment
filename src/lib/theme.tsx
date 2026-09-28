@@ -43,6 +43,9 @@ function applyTheme(mode: ThemeMode, systemDark: boolean): ResolvedTheme {
 export function ThemeProvider({ children }: { children: ReactNode }) {
 	const [mode, setMode] = useState<ThemeMode>("system");
 	const [systemDark, setSystemDark] = useState(false);
+	// Keep the class set by the inline ThemeScript until the stored mode is read,
+	// otherwise the "system/false" defaults remove it and the theme flashes.
+	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
 		const media = window.matchMedia("(prefers-color-scheme: dark)");
@@ -50,6 +53,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 		const timer = window.setTimeout(() => {
 			setMode(readStoredMode());
 			updateSystemTheme();
+			setReady(true);
 		}, 0);
 		media.addEventListener("change", updateSystemTheme);
 		return () => {
@@ -59,8 +63,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 	}, []);
 
 	useEffect(() => {
+		if (!ready) return;
 		applyTheme(mode, systemDark);
-	}, [mode, systemDark]);
+	}, [ready, mode, systemDark]);
 
 	const setThemeMode = useCallback((nextMode: ThemeMode) => {
 		setMode(nextMode);
