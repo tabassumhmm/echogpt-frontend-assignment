@@ -5,6 +5,7 @@ node_modules/
 .next/
 test-results/
 *.tsbuildinfo
+e2e/
 
 # Local evidence artifacts (captures, reports)
 Screenshots/

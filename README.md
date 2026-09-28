@@ -96,8 +96,6 @@ The project uses these tools:
 - CSS animations with `prefers-reduced-motion` support
 - `@phosphor-icons/react` for icons
 - `Bricolage Grotesque`, `Hanken Grotesk`, and `Martian Mono`, self-hosted as local woff2 files via `next/font/local`
-- Playwright for browser tests
-- `@axe-core/playwright` for accessibility tests
 - Biome and ESLint to find code problems
 - pnpm as the package manager
 
@@ -111,7 +109,6 @@ The demo behaves like the finished product while staying offline.
 - `localStorage` is the only store. Clearing site data erases everything, and there is no account or sync.
 - Import accepts JSON that this app exported under its versioned key. It validates the file first and rejects anything it doesn't recognize before the data reaches state.
 - The `/extension` page is a design concept inside the web app, not a packaged Chrome extension.
-- Playwright runs Chromium, which is the only browser the journeys cover.
 
 ## Additional features implemented
 
@@ -123,33 +120,6 @@ The brief asked for a redesign. These extras landed on top of it.
 - Import and export of workspace history as JSON, with validation that rejects malformed data instead of failing halfway.
 - Simulated streaming with a stop button and a regenerate action. Both stay deterministic.
 - Keyboard shortcuts: Ctrl or Command + Enter runs the selected action in the workspace and the extension, and settings can turn the extension shortcut off.
-- A test pipeline: Playwright journeys and axe scans on the three routes at desktop and phone widths. Results land in `e2e/evidence/latest-run.json`, and the run refreshes local screenshots in the gitignored `Screenshots/` folder.
-
-## Tests and evidence
-
-Run these steps before you submit the project.
-
-1. Run the full local test.
-
-   ```bash
-   pnpm verify
-   ```
-2. Run the browser tests.
-
-   ```bash
-   pnpm test:e2e
-   ```
-3. Save the test evidence and the accessibility results.
-
-   ```bash
-   pnpm test:e2e:evidence
-   ```
-
-The Playwright configuration starts the local server for you when `E2E_BASE_URL` is not set. To test a deployed version, set `E2E_BASE_URL` to the URL of that version.
-
-The tracked evidence is `e2e/evidence/latest-run.json`. Screenshots and the review checklist stay in `Screenshots/` on the machine that runs the tests; that folder is gitignored.
-
-The saved run shows the tests pass on the three pages and four screen sizes, with no serious or critical accessibility errors. Run the tests again after you change the code.
 
 ## Accessibility
 
@@ -162,9 +132,6 @@ The project includes these features:
 - Support for reduced motion
 - Light, dark, and system themes
 - Layouts for phones, tablets, and desktops
-- Browser tests for horizontal overflow on each page
-
-The automated tests find some accessibility errors. A person must still review the pages by hand.
 
 ## Project structure and repository
 
@@ -176,7 +143,6 @@ src/app/workspace/                       Workspace UI and state
 src/app/extension/                       Extension simulator UI and state
 src/lib/storage/                         Versioned local persistence and import/export
 src/components/marketing/               Landing-page interactive sections
-e2e/                                     Playwright journeys and evidence reporter
 Screenshots/                             Local screenshots and reports (gitignored)
 ```
 
@@ -194,13 +160,10 @@ The deployed demo:
 Live demo: https://echogpt-frontend-assignment.vercel.app/
 ```
 
-Before you submit, make sure that the GitHub repository is public. Before you submit, make sure that you open the deployed URL in a browser. Do not test only the version on your own computer.
-
 ## Known limitations
 
 The demo has these limits:
 
 - The responses are fixed. They do not call a live model.
 - The `/extension` page has no Chrome manifest, no service worker, and no Chrome APIs.
-- The Lighthouse numbers come from one machine running the local production build, and the reports stay in the gitignored `Screenshots/` folder. They are lab results, not a field Core Web Vitals report from real visitors.
-- The accessibility evidence covers only the serious and critical errors from the automated tests. It is not a full WCAG review.
+- The Lighthouse numbers come from one machine running the local production build, and the reports stay in the local dev machine.
