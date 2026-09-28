@@ -3,14 +3,14 @@
   "command": "pnpm test:e2e:evidence",
   "baseUrl": "http://127.0.0.1:3000",
   "environment": {
-    "node": "v22.23.3",
+    "node": "v24.20.0",
     "pnpm": "10.15.0",
-    "commit": "66a853656c8b996b6c7df3c7bab70cb850de904b",
+    "commit": "4716e4f70c59d9d1a0a63e0c3a10bc5f5f959faa",
     "dirtyWorktree": true
   },
   "timestamps": {
-    "startedAtUtc": "2026-09-25T14:58:50.821Z",
-    "finishedAtUtc": "2026-09-25T14:59:23.640Z"
+    "startedAtUtc": "2026-09-28T16:44:23.243Z",
+    "finishedAtUtc": "2026-09-28T16:44:37.372Z"
   },
   "totals": {
     "tests": 3,
@@ -44,7 +44,7 @@
   },
   "artifacts": {
     "playwrightConfigSha256": "58efb264242f8a6c67ff3be0be8ac84ca8f5079ffd43302752bec47e551c0f30",
-    "e2eSpecSha256": "f647f286def330d73c7573e154421c50764a163c38c5114ef5e2c4929ba22c0d",
+    "e2eSpecSha256": "dca4420d262f40343f2084d9399c78b3d71b9871429498e2012c94a1eed8007c",
     "manifest": "e2e/evidence/latest-run.json"
   }
 }

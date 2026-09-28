@@ -1,7 +1,12 @@
 "use client";
 
-import { Keyboard, Monitor, RotateCcw, Sparkles } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import {
+	Keyboard,
+	Monitor,
+	ArrowCounterClockwise,
+	Sliders,
+} from "@phosphor-icons/react/dist/ssr";
+import type { Icon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -92,7 +97,7 @@ export function ExtensionSettings({
 					</div>
 
 					<SettingRow
-						icon={Sparkles}
+						icon={Sliders}
 						title="Streaming response"
 						description="Show a composing state before the local response is ready."
 						checked={settings.streamingEnabled}
@@ -167,7 +172,7 @@ export function ExtensionSettings({
 							variant="destructive"
 							onClick={onResetRequest}
 						>
-							<RotateCcw aria-hidden="true" />
+							<ArrowCounterClockwise aria-hidden="true" />
 							Reset demo data
 						</Button>
 					</CardContent>
@@ -178,7 +183,7 @@ export function ExtensionSettings({
 }
 
 interface SettingRowProps {
-	icon: LucideIcon;
+	icon: Icon;
 	title: string;
 	description: string;
 	checked: boolean;

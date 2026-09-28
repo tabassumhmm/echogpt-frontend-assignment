@@ -1,6 +1,6 @@
 "use client";
 
-import { MonitorCog, Moon, Sun } from "lucide-react";
+import { Monitor, Moon, Sun } from "@phosphor-icons/react/dist/ssr";
 
 import { useTheme, type ThemeMode } from "@/lib/theme";
 import { IconButton } from "@/components/ui/icon-button";
@@ -16,7 +16,7 @@ const labels: Record<ThemeMode, string> = {
 const icons: Record<ThemeMode, typeof Sun> = {
 	light: Sun,
 	dark: Moon,
-	system: MonitorCog,
+	system: Monitor,
 };
 
 export function ThemeToggle() {

@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock3, MessageSquareText, Trash2 } from "lucide-react";
+import { Clock, ChatText, Trash } from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { getQuickAction } from "@/lib/demo-data/extension-actions";
@@ -38,12 +38,7 @@ export function ExtensionHistory({
 		>
 			<div className="flex flex-wrap items-end justify-between gap-3">
 				<div>
-					<p className="text-sm font-medium text-muted-foreground">
-						Per-action history
-					</p>
-					<h2 className="mt-1 text-2xl font-semibold tracking-tight">
-						Your extension sessions
-					</h2>
+					<h2 className="text-2xl">Your extension sessions</h2>
 					<p className="mt-1 text-sm text-muted-foreground">
 						Each action keeps its own messages and model provenance.
 					</p>
@@ -54,7 +49,7 @@ export function ExtensionHistory({
 					disabled={sessions.length === 0}
 					onClick={onClearRequest}
 				>
-					<Trash2 aria-hidden="true" />
+					<Trash aria-hidden="true" />
 					Clear history
 				</Button>
 			</div>
@@ -62,11 +57,11 @@ export function ExtensionHistory({
 			{sessions.length === 0 ? (
 				<Card>
 					<CardContent className="flex min-h-44 flex-col items-center justify-center text-center">
-						<MessageSquareText
+						<ChatText
 							className="size-8 text-muted-foreground"
 							aria-hidden="true"
 						/>
-						<h3 className="mt-3 font-medium">No action history yet</h3>
+						<h3 className="mt-3">No action history yet</h3>
 						<p className="mt-1 max-w-sm text-sm text-muted-foreground">
 							Run a quick action in Chat. Its request label and local response
 							will appear here.
@@ -99,8 +94,11 @@ export function ExtensionHistory({
 											<CardTitle className="text-base">
 												{action.label}
 											</CardTitle>
-											<p className="mt-1 flex items-center gap-1.5 text-xs text-muted-foreground">
-												<Clock3 className="size-3.5" aria-hidden="true" />
+											<p
+												className="micro mt-1 flex items-center gap-1.5 text-muted-foreground"
+												suppressHydrationWarning
+											>
+												<Clock className="size-3.5" aria-hidden="true" />
 												{formatUpdatedAt(session.updatedAt)} ·{" "}
 												{session.messages.length} messages
 											</p>

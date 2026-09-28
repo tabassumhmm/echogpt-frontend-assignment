@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { IBM_Plex_Mono, Instrument_Sans } from "next/font/google";
+import {
+	Bricolage_Grotesque,
+	Hanken_Grotesk,
+	Martian_Mono,
+} from "next/font/google";
 import type { ReactNode } from "react";
 
 import { ThemeScript } from "@/components/theme-script";
@@ -10,22 +14,29 @@ import { ThemeProvider } from "@/lib/theme";
 
 import "./globals.css";
 
-const instrumentSans = Instrument_Sans({
+const bricolage = Bricolage_Grotesque({
 	subsets: ["latin"],
-	variable: "--font-instrument",
+	axes: ["opsz"],
+	variable: "--font-display",
 	display: "swap",
 });
 
-const plexMono = IBM_Plex_Mono({
+const hanken = Hanken_Grotesk({
 	subsets: ["latin"],
-	weight: ["400", "500", "600", "700"],
-	variable: "--font-plex-mono",
+	variable: "--font-hanken",
+	display: "swap",
+});
+
+const martianMono = Martian_Mono({
+	subsets: ["latin"],
+	weight: ["400", "700"],
+	variable: "--font-martian",
 	display: "swap",
 });
 
 export const metadata: Metadata = {
 	title: {
-		default: "EchoGPT — One prompt, every model",
+		default: "EchoGPT: one prompt, every model",
 		template: "%s · EchoGPT",
 	},
 	description:
@@ -41,24 +52,24 @@ export default function RootLayout({
 				<ThemeScript />
 			</head>
 			<body
-				className={`${instrumentSans.variable} ${plexMono.variable} min-h-screen antialiased`}
+				className={`${bricolage.variable} ${hanken.variable} ${martianMono.variable} min-h-screen antialiased`}
 			>
 				<ThemeProvider>
 					<a className="skip-link" href="#main-content">
 						Skip to content
 					</a>
-					<header className="border-b border-border/70 bg-background/90 backdrop-blur">
+					<header className="border-b-[3px] border-border-strong bg-background">
 						<div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
 							<Link
-								className="group inline-flex items-center gap-2.5 font-semibold tracking-[-0.02em]"
+								className="group inline-flex items-center gap-2.5 font-heading font-bold tracking-[-0.02em]"
 								href="/"
 								aria-label="EchoGPT home"
 							>
 								<span
-									className="grid size-8 place-items-center rounded-[0.65rem] bg-primary text-primary-foreground shadow-sm transition-transform group-hover:-rotate-6"
+									className="grid size-8 place-items-center border-2 border-border-strong bg-primary text-primary-foreground"
 									aria-hidden="true"
 								>
-									<span className="size-2.5 rounded-full bg-primary-foreground" />
+									<span className="size-2.5 bg-primary-foreground" />
 								</span>
 								<span>EchoGPT</span>
 							</Link>
@@ -81,7 +92,16 @@ export default function RootLayout({
 					<main id="main-content" tabIndex={-1}>
 						{children}
 					</main>
-					<footer className="border-t border-border/70 bg-surface/60">
+					<footer className="border-t-[3px] border-border-strong bg-background">
+						<div className="mx-auto max-w-7xl px-4 pt-10 sm:px-6 lg:px-8">
+							<p
+								className="select-none text-center text-[clamp(3.5rem,10vw,9rem)] leading-[0.9] font-bold tracking-[-0.025em] text-transparent"
+								style={{ WebkitTextStroke: "1px var(--color-border-strong)" }}
+								aria-hidden="true"
+							>
+								ECHOGPT
+							</p>
+						</div>
 						<div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
 							<span>Local-first concept · No account required</span>
 							<span>Responses are deterministic demonstrations.</span>

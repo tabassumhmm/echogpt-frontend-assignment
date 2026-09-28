@@ -125,7 +125,9 @@ test("workspace completes the local history journey without overflow", async ({
 	await expect(
 		page.getByRole("heading", { name: "One prompt, every model." }),
 	).toBeVisible();
-	await expect(page.getByText("Qualified local-first concept")).toBeVisible();
+	await expect(
+		page.getByText("No sign-in · No live AI calls · Local JSON export"),
+	).toBeVisible();
 	await page.getByRole("link", { name: "Explore the workspace" }).click();
 	await expect(
 		page.getByRole("heading", {

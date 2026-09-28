@@ -1,16 +1,16 @@
 "use client";
 
-import type { LucideIcon } from "lucide-react";
+import type { Icon } from "@phosphor-icons/react";
 import {
-	Bot,
+	Robot,
 	Brain,
-	Code2,
+	Code,
 	FileText,
-	Languages,
-	PenLine,
-	Sparkles,
+	Translate,
+	PencilSimpleLine,
+	ImageSquare,
 	Square,
-} from "lucide-react";
+} from "@phosphor-icons/react/dist/ssr";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -37,13 +37,13 @@ import {
 	type QuickActionId,
 } from "@/lib/storage/schema";
 
-const ACTION_ICONS: Record<QuickActionId, LucideIcon> = {
+const ACTION_ICONS: Record<QuickActionId, Icon> = {
 	summarize: FileText,
-	rewrite: PenLine,
-	translate: Languages,
-	"explain-code": Code2,
+	rewrite: PencilSimpleLine,
+	translate: Translate,
+	"explain-code": Code,
 	brainstorm: Brain,
-	"generate-image": Sparkles,
+	"generate-image": ImageSquare,
 };
 
 interface ExtensionChatProps {
@@ -81,17 +81,15 @@ export function ExtensionChat({
 	const SelectedActionIcon = ACTION_ICONS[selectedActionId];
 
 	return (
-		<div className="extension-chat-grid">
+		<div className="grid gap-5">
 			<section className="space-y-5" aria-label="Extension chat controls">
 				<div className="flex flex-wrap items-start justify-between gap-3">
 					<div>
 						<Badge variant="secondary">
-							<Bot aria-hidden="true" />
+							<Robot aria-hidden="true" />
 							Local extension
 						</Badge>
-						<h2 className="mt-3 text-xl font-semibold tracking-tight">
-							Run an action on the page
-						</h2>
+						<h2 className="mt-3 text-xl">Run an action on the page</h2>
 						<p className="mt-1 text-sm text-muted-foreground">
 							Selected page text stays in this tab and is never stored.
 						</p>
@@ -223,7 +221,7 @@ export function ExtensionChat({
 										className="grid min-h-32 place-items-center rounded-lg border border-primary/30 bg-accent-soft p-4 text-center"
 									>
 										<div>
-											<Sparkles aria-hidden="true" />
+											<ImageSquare aria-hidden="true" />
 											<p className="mt-2 font-medium">
 												Demo generated image placeholder
 											</p>

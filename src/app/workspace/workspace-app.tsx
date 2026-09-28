@@ -487,7 +487,7 @@ export function WorkspaceApp() {
 
 	return (
 		<div
-			className="page-shell space-y-5"
+			className="page-shell space-y-5 py-10 lg:py-14"
 			aria-busy={isGenerating || isImporting}
 		>
 			<WorkspaceHeader

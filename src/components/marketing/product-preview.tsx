@@ -1,113 +1,114 @@
 "use client";
 
+import type { Icon } from "@phosphor-icons/react";
 import {
 	ArrowUpRight,
-	Bot,
-	Braces,
+	CaretDown,
 	Check,
-	CircleStop,
-	Command,
-	Sparkles,
-	type LucideIcon,
-} from "lucide-react";
+	BracketsCurly,
+	PaperPlaneRight,
+	Robot,
+	SquaresFour,
+} from "@phosphor-icons/react/dist/ssr";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
-const previewActions: readonly { label: string; icon: LucideIcon }[] = [
-	{ label: "Summarize", icon: Braces },
+const previewActions: readonly { label: string; icon: Icon }[] = [
+	{ label: "Summarize", icon: BracketsCurly },
 	{ label: "Rewrite", icon: Check },
 	{ label: "Plan next", icon: ArrowUpRight },
 ];
 
 export function ProductPreview() {
 	return (
-		<div className="relative">
-			<div
-				className="absolute -inset-4 rounded-[2rem] bg-primary/10 blur-3xl"
-				aria-hidden="true"
-			/>
-			<Card className="relative overflow-hidden border-border/80 bg-surface/95 shadow-[var(--shadow-float)]">
-				<CardHeader className="border-b border-border/70 bg-surface-raised/70 pb-4">
-					<div className="flex items-center justify-between gap-3">
-						<div className="flex items-center gap-2.5">
-							<span
-								className="grid size-8 place-items-center rounded-lg bg-primary text-primary-foreground"
-								aria-hidden="true"
-							>
-								<Sparkles className="size-4" />
-							</span>
-							<div>
-								<CardTitle className="text-sm">Workspace</CardTitle>
-								<p className="font-mono text-[0.68rem] text-muted-foreground">
-									local session · 04 models
-								</p>
+		<Card
+			className="overflow-hidden border-2 border-border-strong bg-surface ring-0"
+			role="img"
+			aria-label="Product preview: a workspace chat with Claude Sonnet replying locally and a message composer"
+		>
+			<div className="flex items-center justify-between gap-3 border-b-2 border-border-strong px-4 py-3">
+				<div className="flex items-center gap-2.5">
+					<span
+						className="grid size-8 place-items-center border-2 border-border-strong bg-primary text-primary-foreground"
+						aria-hidden="true"
+					>
+						<SquaresFour className="size-4" />
+					</span>
+					<div>
+						<p className="text-sm font-bold">Workspace</p>
+						<p className="micro text-muted-foreground">
+							local session · 4 models
+						</p>
+					</div>
+				</div>
+				<span className="micro flex items-center gap-1.5 border-2 border-border-strong px-2 py-1">
+					<Robot className="size-3.5 text-accent-strong" aria-hidden="true" />
+					Claude Sonnet
+					<CaretDown className="size-3" aria-hidden="true" />
+				</span>
+			</div>
+
+			<div className="grid gap-4 p-4">
+				<div className="space-y-4">
+					<div className="flex justify-end">
+						<div className="max-w-[85%]">
+							<p className="micro mb-1 text-right text-muted-foreground">
+								You · 3:00 PM
+							</p>
+							<div className="border-2 border-border-strong bg-primary px-3 py-2 text-sm leading-6 text-primary-foreground">
+								Give me a clear brief from these notes, with the decision first.
 							</div>
 						</div>
-						<Badge variant="secondary">Demo catalog</Badge>
 					</div>
-				</CardHeader>
-				<CardContent className="grid gap-4 p-4 sm:p-5">
-					<div className="flex items-center justify-between rounded-xl border border-border/70 bg-background/70 px-3 py-2.5">
-						<div className="flex items-center gap-2 text-xs text-muted-foreground">
-							<span
-								className="size-2 rounded-full bg-success"
+					<div className="flex gap-2.5">
+						<span
+							className="mt-5 grid size-7 shrink-0 place-items-center border-2 border-border-strong bg-accent-soft text-accent-strong"
+							aria-hidden="true"
+						>
+							<Robot className="size-4" />
+						</span>
+						<div className="max-w-[85%]">
+							<p className="micro mb-1 text-muted-foreground">
+								Claude Sonnet · 3:00 PM
+							</p>
+							<div className="border-2 border-border-strong bg-background px-3 py-2 text-sm leading-6">
+								Start with the decision, group evidence by theme, then close
+								with the questions that still need an answer.
+							</div>
+						</div>
+					</div>
+					<div className="flex items-center gap-1.5 pl-[38px]">
+						<span className="size-1.5 animate-pulse bg-accent-strong" />
+						<span className="size-1.5 animate-pulse bg-accent-strong [animation-delay:150ms]" />
+						<span className="size-1.5 animate-pulse bg-accent-strong [animation-delay:300ms]" />
+						<span className="micro ml-1 text-muted-foreground">composing…</span>
+					</div>
+				</div>
+
+				<div className="flex flex-wrap gap-2 border-t-2 border-border-strong pt-3">
+					{previewActions.map(({ label, icon: Icon }) => (
+						<span
+							className="inline-flex items-center gap-1.5 border-2 border-border-strong bg-surface px-2.5 py-1.5 text-xs font-bold"
+							key={label}
+						>
+							<Icon
+								className="size-3.5 text-accent-strong"
 								aria-hidden="true"
 							/>
-							Context preserved
-						</div>
-						<span className="font-mono text-[0.68rem] text-muted-foreground">
-							just now
+							{label}
 						</span>
-					</div>
-					<div className="space-y-3">
-						<div className="max-w-[88%] rounded-2xl rounded-tl-md bg-primary px-4 py-3 text-sm leading-6 text-primary-foreground">
-							Give me a clear brief from these notes, with the decision first.
-						</div>
-						<div className="ml-auto max-w-[92%] rounded-2xl rounded-tr-md border border-border/70 bg-surface-raised px-4 py-3 text-sm leading-6 text-foreground">
-							<div className="mb-2 flex items-center gap-2 font-mono text-[0.68rem] text-muted-foreground">
-								<Bot className="size-3.5" aria-hidden="true" />
-								Claude Sonnet
-								<Badge className="px-1.5 py-0 text-[0.58rem]" variant="outline">
-									Demo
-								</Badge>
-							</div>
-							Start with the decision, group evidence by theme, then close with
-							the questions that still need an answer.
-						</div>
-					</div>
-					<div className="rounded-xl border border-border/70 bg-background/70 p-3">
-						<div className="mb-3 flex items-center gap-1.5 text-xs text-muted-foreground">
-							<Command className="size-3.5" aria-hidden="true" />
-							Try a focused action
-						</div>
-						<div className="flex flex-wrap gap-2">
-							{previewActions.map(({ label, icon: Icon }) => (
-								<span
-									className="inline-flex items-center gap-1.5 rounded-lg border border-border/70 bg-surface px-2.5 py-1.5 text-xs"
-									key={label}
-								>
-									<Icon className="size-3.5 text-primary" aria-hidden="true" />
-									{label}
-								</span>
-							))}
-						</div>
-					</div>
-					<div className="flex items-center justify-between border-t border-border/70 pt-3 text-xs text-muted-foreground">
-						<span className="inline-flex items-center gap-1.5">
-							<CircleStop className="size-3.5" aria-hidden="true" />
-							Ready when you are
-						</span>
-						<Button asChild size="sm" variant="ghost">
-							<a href="/workspace">
-								Open workspace{" "}
-								<ArrowUpRight className="size-3.5" aria-hidden="true" />
-							</a>
-						</Button>
-					</div>
-				</CardContent>
-			</Card>
-		</div>
+					))}
+				</div>
+
+				<div className="flex items-center justify-between gap-3 border-2 border-border-strong bg-background px-3 py-2">
+					<span className="text-sm text-muted-foreground">
+						Reply in this demo…
+					</span>
+					<span className="grid size-7 place-items-center border-2 border-border-strong bg-primary text-primary-foreground">
+						<PaperPlaneRight className="size-3.5" aria-hidden="true" />
+					</span>
+				</div>
+			</div>
+		</Card>
 	);
 }

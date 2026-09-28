@@ -23,13 +23,11 @@ Do these steps in order.
    ```bash
    pnpm install
    ```
-
 2. Start the server for development.
 
    ```bash
    pnpm dev
    ```
-
 3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 To build the production version and serve it, run:
@@ -51,6 +49,7 @@ The landing page shows the product. It provides:
 - A section that answers "Why EchoGPT?"
 - A pricing section
 - A questions and answers section
+- A testimonials section with illustrative demo quotes
 - A call to action and a footer
 
 ### `/workspace`
@@ -94,12 +93,37 @@ The project uses these tools:
 - TypeScript in strict mode
 - Tailwind CSS 4
 - shadcn/ui and Radix UI
-- `motion` for animation
-- `lucide-react` for icons
+- CSS animations with `prefers-reduced-motion` support
+- `@phosphor-icons/react` for icons
+- `Bricolage Grotesque`, `Hanken Grotesk`, and `Martian Mono` via `next/font`
 - Playwright for browser tests
 - `@axe-core/playwright` for accessibility tests
 - Biome and ESLint to find code problems
 - pnpm as the package manager
+
+## Assumptions
+
+The demo behaves like the finished product while staying offline.
+
+- Fixed replies stand in for live models, so results stay deterministic across runs.
+- Model names follow public lineups: GPT-4, Claude Sonnet, Gemini Pro, and DeepSeek. The catalog entries are examples and the app never contacts a provider.
+- The workspace and the extension share one browser profile. Theme, default model, and the global reset apply to both.
+- `localStorage` is the only store. Clearing site data erases everything, and there is no account or sync.
+- Import accepts JSON that this app exported under its versioned key. It validates the file first and rejects anything it doesn't recognize before the data reaches state.
+- The `/extension` page is a design concept inside the web app, not a packaged Chrome extension.
+- Playwright runs Chromium, which is the only browser the journeys cover.
+
+## Additional features implemented
+
+The brief asked for a redesign. These extras landed on top of it.
+
+- Dark, light, and system themes, remembered per browser.
+- A motion system with scroll reveals, a staggered hero, message mount animations, and hover lifts. Everything switches off under `prefers-reduced-motion`.
+- Per-model conversation histories with search, rename, pin, and delete, each destructive action behind a confirmation dialog.
+- Import and export of workspace history as JSON, with validation that rejects malformed data instead of failing halfway.
+- Simulated streaming with a stop button and a regenerate action. Both stay deterministic.
+- Keyboard shortcuts: Ctrl or Command + Enter runs the selected action in the workspace and the extension, and settings can turn the extension shortcut off.
+- A test pipeline: Playwright journeys and axe scans on the three routes at desktop and phone widths. Results land in `e2e/evidence/latest-run.json`, and the run refreshes local screenshots in the gitignored `Screenshots/` folder.
 
 ## Tests and evidence
 
@@ -110,13 +134,11 @@ Run these steps before you submit the project.
    ```bash
    pnpm verify
    ```
-
 2. Run the browser tests.
 
    ```bash
    pnpm test:e2e
    ```
-
 3. Save the test evidence and the accessibility results.
 
    ```bash
@@ -125,13 +147,9 @@ Run these steps before you submit the project.
 
 The Playwright configuration starts the local server for you when `E2E_BASE_URL` is not set. To test a deployed version, set `E2E_BASE_URL` to the URL of that version.
 
-The test evidence files are in these locations:
+The tracked evidence is `e2e/evidence/latest-run.json`. Screenshots and the review checklist stay in `Screenshots/` on the machine that runs the tests; that folder is gitignored.
 
-- `Screenshots/evidence-checklist.md`
-- `Screenshots/`
-- `e2e/evidence/latest-run.json`
-
-The saved evidence shows that the tests pass on the three pages and four screen sizes. The saved evidence also shows no serious or critical accessibility errors. Run the tests again after you change the code.
+The saved run shows the tests pass on the three pages and four screen sizes, with no serious or critical accessibility errors. Run the tests again after you change the code.
 
 ## Accessibility
 
@@ -159,12 +177,22 @@ src/app/extension/                       Extension simulator UI and state
 src/lib/storage/                         Versioned local persistence and import/export
 src/components/marketing/               Landing-page interactive sections
 e2e/                                     Playwright journeys and evidence reporter
-Screenshots/                             Evidence screenshots and architecture assets
+Screenshots/                             Local screenshots and reports (gitignored)
 ```
 
 The source repository is at [github.com/tabassumhmm/echogpt-frontend-assignment](https://github.com/tabassumhmm/echogpt-frontend-assignment).
 
-The live demo URL is not in this file yet. TODO: add the deployed Vercel, Netlify, or similar URL before you submit.
+To deploy the live demo, run one command from the repository root and keep the printed URL:
+
+```bash
+npx vercel deploy --prod
+```
+
+After the deploy, add the URL here:
+
+```text
+Live demo: TODO after deploy
+```
 
 Before you submit, make sure that the GitHub repository is public. Before you submit, make sure that you open the deployed URL in a browser. Do not test only the version on your own computer.
 
@@ -174,5 +202,5 @@ The demo has these limits:
 
 - The responses are fixed. They do not call a live model.
 - The `/extension` page has no Chrome manifest, no service worker, and no Chrome APIs.
-- The project has no Lighthouse report and no Core Web Vitals report.
+- The Lighthouse numbers come from one machine running the local production build, and the reports stay in the gitignored `Screenshots/` folder. They are lab results, not a field Core Web Vitals report from real visitors.
 - The accessibility evidence covers only the serious and critical errors from the automated tests. It is not a full WCAG review.

@@ -1,14 +1,14 @@
 import {
 	Check,
-	MessageSquare,
-	Pencil,
-	Pin,
-	PinOff,
+	Chat,
+	PencilSimple,
+	PushPin,
+	PushPinSlash,
 	Plus,
-	Search,
-	Trash2,
+	MagnifyingGlass,
+	Trash,
 	X,
-} from "lucide-react";
+} from "@phosphor-icons/react/dist/ssr";
 import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -76,7 +76,11 @@ export function ConversationList({
 	}
 
 	return (
-		<Card role="region" aria-labelledby="conversation-list-title">
+		<Card
+			className="reveal border-2 border-border-strong ring-0"
+			role="region"
+			aria-labelledby="conversation-list-title"
+		>
 			<CardHeader className="border-b border-border/60 bg-muted/20">
 				<div className="flex items-center justify-between gap-3">
 					<div>
@@ -97,7 +101,7 @@ export function ConversationList({
 			</CardHeader>
 			<CardContent className="space-y-3 p-3">
 				<div className="flex items-center gap-2 rounded-lg border border-border/70 bg-background px-2.5">
-					<Search
+					<MagnifyingGlass
 						className="size-4 shrink-0 text-muted-foreground"
 						aria-hidden="true"
 					/>
@@ -123,7 +127,7 @@ export function ConversationList({
 				</div>
 				<div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible">
 					{visibleConversations.length === 0 ? (
-						<p className="rounded-xl border border-dashed border-border px-3 py-6 text-center text-sm text-muted-foreground">
+						<p className="border-2 border-dashed border-border-strong px-3 py-6 text-center text-sm text-muted-foreground">
 							{conversations.length === 0
 								? "No histories for this model yet."
 								: "No matching histories."}
@@ -135,7 +139,7 @@ export function ConversationList({
 							return (
 								<div
 									key={conversation.id}
-									className={`group flex min-w-64 items-center gap-1 rounded-xl border pr-1 transition-colors lg:min-w-0 ${
+									className={`msg-in group flex min-w-64 items-center gap-1 border pr-1 transition-colors lg:min-w-0 ${
 										active
 											? "border-primary/40 bg-primary/8 text-foreground"
 											: "border-border/60 bg-background text-muted-foreground hover:bg-muted"
@@ -188,7 +192,7 @@ export function ConversationList({
 											onClick={() => onSelect(conversation.id)}
 											disabled={disabled}
 										>
-											<MessageSquare
+											<Chat
 												className="mt-0.5 size-4 shrink-0"
 												aria-hidden="true"
 											/>
@@ -196,13 +200,13 @@ export function ConversationList({
 												<span className="flex items-center gap-2 text-sm font-medium">
 													<span className="truncate">{conversation.title}</span>
 													{conversation.pinned ? (
-														<Pin
-															className="ml-auto size-3.5 shrink-0 text-primary"
+														<PushPin
+															className="ml-auto size-3.5 shrink-0 text-accent-strong"
 															aria-label="Pinned"
 														/>
 													) : null}
 												</span>
-												<span className="mt-1 block text-xs text-muted-foreground">
+												<span className="micro mt-1 block text-muted-foreground">
 													{conversation.messages.length} messages
 												</span>
 											</span>
@@ -223,9 +227,9 @@ export function ConversationList({
 												disabled={disabled}
 											>
 												{conversation.pinned ? (
-													<PinOff aria-hidden="true" />
+													<PushPinSlash aria-hidden="true" />
 												) : (
-													<Pin aria-hidden="true" />
+													<PushPin aria-hidden="true" />
 												)}
 											</IconButton>
 											<IconButton
@@ -236,7 +240,7 @@ export function ConversationList({
 												onClick={() => startRename(conversation)}
 												disabled={disabled}
 											>
-												<Pencil aria-hidden="true" />
+												<PencilSimple aria-hidden="true" />
 											</IconButton>
 											<IconButton
 												type="button"
@@ -246,7 +250,7 @@ export function ConversationList({
 												onClick={() => onDelete(conversation.id)}
 												disabled={disabled}
 											>
-												<Trash2 aria-hidden="true" />
+												<Trash aria-hidden="true" />
 											</IconButton>
 										</div>
 									)}

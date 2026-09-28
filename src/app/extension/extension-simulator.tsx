@@ -1,7 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { History, MessageSquareText, Settings2 } from "lucide-react";
+import {
+	ClockCounterClockwise,
+	ChatText,
+	GearSix,
+} from "@phosphor-icons/react/dist/ssr";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { simulateResponse } from "@/lib/ai/simulate-response";
 import {
@@ -195,82 +199,99 @@ export function ExtensionSimulator() {
 
 	return (
 		<section
-			className="extension-window"
+			className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8"
 			aria-label="EchoGPT extension simulator"
-			data-compact={state.compactMode}
 		>
-			<Tabs
-				value={activeTab}
-				onValueChange={(value) => {
-					if (value === "chat" || value === "history" || value === "settings") {
-						setActiveTab(value);
-					}
-				}}
-			>
-				<div className="extension-toolbar">
-					<div>
-						<p className="text-sm font-semibold">EchoGPT Extension</p>
-						<p className="text-xs text-muted-foreground">
-							Local simulator · no page content stored
-						</p>
-					</div>
-					<TabsList className="grid w-full grid-cols-3 sm:w-auto">
-						<TabsTrigger value="chat">
-							<MessageSquareText aria-hidden="true" />
-							Chat
-						</TabsTrigger>
-						<TabsTrigger value="history">
-							<History aria-hidden="true" />
-							History
-						</TabsTrigger>
-						<TabsTrigger value="settings">
-							<Settings2 aria-hidden="true" />
-							Settings
-						</TabsTrigger>
-					</TabsList>
+			<div className="mx-auto w-full max-w-105 sm:mx-auto">
+				<p className="tag mb-3 border-transparent bg-foreground px-3 py-1 text-background">
+					Popup simulator · 420px scale
+				</p>
+				<div
+					className="reveal border-2 border-border-strong bg-surface outline-2 outline-offset-4 outline-accent-soft"
+					data-compact={state.compactMode}
+				>
+					<Tabs
+						value={activeTab}
+						onValueChange={(value) => {
+							if (
+								value === "chat" ||
+								value === "history" ||
+								value === "settings"
+							) {
+								setActiveTab(value);
+							}
+						}}
+					>
+						<div className="flex flex-col gap-3 border-b border-border px-4 py-3">
+							<div>
+								<p className="text-sm font-semibold">EchoGPT Extension</p>
+								<p className="text-xs text-muted-foreground">
+									Local simulator · no page content stored
+								</p>
+							</div>
+							<TabsList className="grid w-full grid-cols-3">
+								<TabsTrigger value="chat">
+									<ChatText aria-hidden="true" />
+									Chat
+								</TabsTrigger>
+								<TabsTrigger value="history">
+									<ClockCounterClockwise aria-hidden="true" />
+									History
+								</TabsTrigger>
+								<TabsTrigger value="settings">
+									<GearSix aria-hidden="true" />
+									Settings
+								</TabsTrigger>
+							</TabsList>
+						</div>
+						<div className="p-4">
+							<TabsContent className="pane-in" value="chat">
+								<ExtensionChat
+									actions={quickActions}
+									enabledActionIds={state.enabledQuickActionIds}
+									selectedActionId={selectedActionId}
+									modelId={modelId}
+									pageText={pageText}
+									session={selectedSession}
+									isGenerating={isGenerating}
+									keyboardShortcutsEnabled={state.keyboardShortcutsEnabled}
+									onModelChange={selectModel}
+									onPageTextChange={setPageText}
+									onRunAction={runAction}
+									onStop={() => abortRef.current?.abort()}
+								/>
+							</TabsContent>
+							<TabsContent className="pane-in" value="history">
+								<ExtensionHistory
+									sessions={state.extensionSessions}
+									selectedActionId={selectedActionId}
+									onSelectAction={(actionId) => {
+										setSelectedActionId(actionId);
+										setActiveTab("chat");
+									}}
+									onClearRequest={() => setConfirmAction("clear")}
+								/>
+							</TabsContent>
+							<TabsContent className="pane-in" value="settings">
+								<ExtensionSettings
+									settings={state}
+									enabledActionIds={state.enabledQuickActionIds}
+									onSettingChange={changeSetting}
+									onToggleAction={toggleAction}
+									onResetRequest={() => setConfirmAction("reset")}
+								/>
+							</TabsContent>
+						</div>
+					</Tabs>
+					<p
+						className="border-t border-border px-4 py-2 text-xs text-muted-foreground"
+						role="status"
+						aria-live="polite"
+					>
+						{notice}
+					</p>
 				</div>
-				<div className="extension-pane">
-					<TabsContent value="chat">
-						<ExtensionChat
-							actions={quickActions}
-							enabledActionIds={state.enabledQuickActionIds}
-							selectedActionId={selectedActionId}
-							modelId={modelId}
-							pageText={pageText}
-							session={selectedSession}
-							isGenerating={isGenerating}
-							keyboardShortcutsEnabled={state.keyboardShortcutsEnabled}
-							onModelChange={selectModel}
-							onPageTextChange={setPageText}
-							onRunAction={runAction}
-							onStop={() => abortRef.current?.abort()}
-						/>
-					</TabsContent>
-					<TabsContent value="history">
-						<ExtensionHistory
-							sessions={state.extensionSessions}
-							selectedActionId={selectedActionId}
-							onSelectAction={(actionId) => {
-								setSelectedActionId(actionId);
-								setActiveTab("chat");
-							}}
-							onClearRequest={() => setConfirmAction("clear")}
-						/>
-					</TabsContent>
-					<TabsContent value="settings">
-						<ExtensionSettings
-							settings={state}
-							enabledActionIds={state.enabledQuickActionIds}
-							onSettingChange={changeSetting}
-							onToggleAction={toggleAction}
-							onResetRequest={() => setConfirmAction("reset")}
-						/>
-					</TabsContent>
-				</div>
-			</Tabs>
-			<p className="extension-notice" role="status" aria-live="polite">
-				{notice}
-			</p>
+			</div>
 			<ExtensionConfirmDialog
 				open={confirmAction === "clear"}
 				title="Clear extension history?"

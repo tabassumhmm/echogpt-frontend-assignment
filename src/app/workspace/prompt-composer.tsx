@@ -1,4 +1,10 @@
-import { CornerDownLeft, Paperclip, Sparkles, Square, X } from "lucide-react";
+import {
+	KeyReturn,
+	Paperclip,
+	Lightbulb,
+	Square,
+	X,
+} from "@phosphor-icons/react/dist/ssr";
 import { useRef } from "react";
 import type { KeyboardEvent } from "react";
 
@@ -76,7 +82,7 @@ export function PromptComposer({
 
 	return (
 		<form
-			className="rounded-2xl border border-border/70 bg-card p-4 shadow-sm md:p-5"
+			className="reveal border-2 border-border-strong bg-card p-4 md:p-5"
 			onSubmit={onSubmit}
 		>
 			<div className="flex flex-wrap items-start justify-between gap-3">
@@ -89,7 +95,7 @@ export function PromptComposer({
 						What would you like to work through?
 					</label>
 				</div>
-				<span className="text-xs text-muted-foreground">
+				<span className="micro text-muted-foreground">
 					Local demo · no provider call
 				</span>
 			</div>
@@ -122,7 +128,7 @@ export function PromptComposer({
 							</span>
 							<button
 								type="button"
-								className="rounded p-0.5 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+								className="p-0.5 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
 								onClick={() =>
 									onAttachmentsChange(
 										attachments.filter((item) => item.id !== attachment.id),
@@ -176,7 +182,7 @@ export function PromptComposer({
 								onClick={() => handleSuggestion(suggestion.prompt)}
 								disabled={isGenerating}
 							>
-								<Sparkles data-icon="inline-start" />
+								<Lightbulb data-icon="inline-start" />
 								{suggestion.label}
 							</Button>
 						))}
@@ -201,11 +207,11 @@ export function PromptComposer({
 						disabled={isGenerating || prompt.trim().length === 0}
 					>
 						Send
-						<CornerDownLeft data-icon="inline-end" />
+						<KeyReturn data-icon="inline-end" />
 					</Button>
 				</div>
 			</div>
-			<p className="mt-2 text-[0.68rem] text-muted-foreground">
+			<p className="micro mt-2 text-muted-foreground">
 				Only file names, types, and sizes are kept locally; file contents are
 				never read or uploaded.
 			</p>

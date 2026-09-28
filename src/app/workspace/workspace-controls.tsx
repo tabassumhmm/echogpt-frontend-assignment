@@ -1,11 +1,11 @@
 import {
-	ChevronDown,
+	CaretDown,
 	Copy,
 	Info,
-	RefreshCw,
+	ArrowsClockwise,
 	Scissors,
 	Square,
-} from "lucide-react";
+} from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -36,7 +36,7 @@ export function ModelSwitcher({
 }: ModelSwitcherProps) {
 	const activeModel = getModel(value);
 	return (
-		<div className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card/70 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+		<div className="reveal flex flex-col gap-3 border-2 border-border-strong bg-card p-4 sm:flex-row sm:items-center sm:justify-between">
 			<div className="min-w-0">
 				<p className="eyebrow">Active model</p>
 				<p className="mt-1 truncate text-sm text-muted-foreground">
@@ -90,7 +90,7 @@ export function ContextPanel({
 		) ?? 0;
 
 	return (
-		<aside className="rounded-2xl border border-border/70 bg-card/70 shadow-sm">
+		<aside className="reveal border-2 border-border-strong bg-card">
 			<div className="flex items-start justify-between gap-3 p-4">
 				<div className="min-w-0">
 					<p className="eyebrow">Context</p>
@@ -109,7 +109,7 @@ export function ContextPanel({
 					aria-controls="workspace-context-panel"
 					onClick={() => setIsOpen((open) => !open)}
 				>
-					<ChevronDown
+					<CaretDown
 						className={isOpen ? "" : "rotate-180"}
 						aria-hidden="true"
 					/>
@@ -205,7 +205,7 @@ export function ResponseActions({
 				onClick={onRegenerate}
 				disabled={!canAct}
 			>
-				<RefreshCw data-icon="inline-start" />
+				<ArrowsClockwise data-icon="inline-start" />
 				Regenerate
 			</Button>
 			<Button

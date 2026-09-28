@@ -1,4 +1,8 @@
-import { Keyboard, PanelTop, Sparkles } from "lucide-react";
+import {
+	Keyboard,
+	SidebarSimple,
+	Waveform,
+} from "@phosphor-icons/react/dist/ssr";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
@@ -32,7 +36,7 @@ function PreferenceRow({
 	return (
 		<div className="flex items-start justify-between gap-4 border-b border-border/60 py-4 last:border-0 last:pb-0 first:pt-0">
 			<div className="flex min-w-0 gap-3">
-				<span className="mt-0.5 text-primary" aria-hidden="true">
+				<span className="mt-0.5 text-accent-strong" aria-hidden="true">
 					{icon}
 				</span>
 				<div>
@@ -71,7 +75,7 @@ export function PreferencesPanel({
 			<CardContent className="p-4 md:p-5">
 				<PreferenceRow
 					id="streaming-enabled"
-					icon={<Sparkles className="size-4" />}
+					icon={<Waveform className="size-4" />}
 					label="Simulate streaming"
 					description="Show a writing state while the deterministic response resolves."
 					checked={streamingEnabled}
@@ -79,7 +83,7 @@ export function PreferencesPanel({
 				/>
 				<PreferenceRow
 					id="compact-mode"
-					icon={<PanelTop className="size-4" />}
+					icon={<SidebarSimple className="size-4" />}
 					label="Compact mode"
 					description="Reduce message spacing for denser side-by-side work."
 					checked={compactMode}

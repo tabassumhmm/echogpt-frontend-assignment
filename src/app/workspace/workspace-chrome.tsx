@@ -1,4 +1,9 @@
-import { Download, FileUp, RotateCcw, Save } from "lucide-react";
+import {
+	DownloadSimple,
+	FileArrowUp,
+	ArrowCounterClockwise,
+	FloppyDisk,
+} from "@phosphor-icons/react/dist/ssr";
 import { useRef } from "react";
 
 import { Badge } from "@/components/ui/badge";
@@ -28,7 +33,7 @@ export function WorkspaceHeader({
 	const fileInputRef = useRef<HTMLInputElement>(null);
 
 	return (
-		<header className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+		<header className="reveal flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
 			<div className="max-w-2xl">
 				<div className="flex flex-wrap items-center gap-2">
 					<p className="eyebrow">Local workspace</p>
@@ -36,7 +41,7 @@ export function WorkspaceHeader({
 						{hydrated ? "Saved in browser" : "Loading"}
 					</Badge>
 				</div>
-				<h1 className="mt-3 font-heading text-3xl font-semibold tracking-tight md:text-4xl">
+				<h1 className="mt-3 text-3xl md:text-4xl">
 					Compare models without losing context.
 				</h1>
 				<p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
@@ -64,7 +69,7 @@ export function WorkspaceHeader({
 					onClick={() => fileInputRef.current?.click()}
 					disabled={disabled}
 				>
-					<FileUp data-icon="inline-start" />
+					<FileArrowUp data-icon="inline-start" />
 					Import
 				</Button>
 				<Button
@@ -73,7 +78,7 @@ export function WorkspaceHeader({
 					onClick={onExport}
 					disabled={disabled}
 				>
-					<Download data-icon="inline-start" />
+					<DownloadSimple data-icon="inline-start" />
 					Export
 				</Button>
 				<Button
@@ -82,7 +87,7 @@ export function WorkspaceHeader({
 					onClick={onReset}
 					disabled={disabled}
 				>
-					<RotateCcw data-icon="inline-start" />
+					<ArrowCounterClockwise data-icon="inline-start" />
 					Reset
 				</Button>
 			</div>
@@ -109,7 +114,10 @@ export function WorkspaceNotice({
 				role={notice.tone === "error" ? "alert" : "status"}
 			>
 				{notice.tone === "success" ? (
-					<Save className="size-4 text-primary" aria-hidden="true" />
+					<FloppyDisk
+						className="size-4 text-accent-strong"
+						aria-hidden="true"
+					/>
 				) : null}
 				{notice.message}
 			</CardContent>

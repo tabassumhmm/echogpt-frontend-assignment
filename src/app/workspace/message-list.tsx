@@ -1,4 +1,4 @@
-import { Bot, UserRound } from "lucide-react";
+import { Robot, User } from "@phosphor-icons/react/dist/ssr";
 
 import { getModel } from "@/lib/demo-data/models";
 import type { ChatMessage, ModelId } from "@/lib/storage/schema";
@@ -22,7 +22,7 @@ export function MessageList({ modelId, items, compact }: MessageListProps) {
 	const model = getModel(modelId);
 	return (
 		<Card
-			className="min-w-0 overflow-hidden"
+			className="reveal min-w-0 overflow-hidden border-2 border-border-strong ring-0"
 			aria-labelledby="conversation-title"
 		>
 			<CardHeader className="border-b border-border/60 bg-muted/20">
@@ -46,7 +46,7 @@ export function MessageList({ modelId, items, compact }: MessageListProps) {
 					aria-label={`${model.name} conversation`}
 				>
 					{items.length === 0 ? (
-						<div className="rounded-2xl border border-dashed border-border px-5 py-12 text-center">
+						<div className="border-2 border-dashed border-border-strong px-5 py-12 text-center">
 							<p className="text-sm font-medium">Start with a prompt</p>
 							<p className="mt-1 text-sm text-muted-foreground">
 								Your local response will appear here without contacting a
@@ -59,32 +59,34 @@ export function MessageList({ modelId, items, compact }: MessageListProps) {
 							return (
 								<article
 									key={item.id}
-									className={`flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}
+									className={`msg-in flex gap-3 ${isUser ? "justify-end" : "justify-start"}`}
 								>
 									{!isUser ? (
-										<span className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-											<Bot className="size-4" aria-hidden="true" />
+										<span className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-accent-strong">
+											<Robot className="size-4" aria-hidden="true" />
 										</span>
 									) : null}
 									<div
 										className={`max-w-[min(88%,680px)] ${isUser ? "items-end text-right" : ""}`}
 									>
 										<div
-											className={`mb-1 flex items-center gap-2 text-xs text-muted-foreground ${isUser ? "justify-end" : ""}`}
+											className={`micro mb-1 flex items-center gap-2 text-muted-foreground ${isUser ? "justify-end" : ""}`}
 										>
 											<span>{isUser ? "You" : model.name}</span>
-											<time dateTime={item.createdAt}>
+											<time dateTime={item.createdAt} suppressHydrationWarning>
 												{formatMessageTime(item.createdAt)}
 											</time>
 											{item.status === "streaming" ? (
-												<Badge variant="outline">Writing…</Badge>
+												<Badge className="animate-pulse" variant="outline">
+													Writing…
+												</Badge>
 											) : null}
 											{item.status === "stopped" ? (
 												<Badge variant="destructive">Stopped</Badge>
 											) : null}
 										</div>
 										<div
-											className={`rounded-2xl px-4 py-3 text-left text-sm leading-6 shadow-sm ${
+											className={`rounded-2xl px-4 py-3 text-left text-sm leading-6 ${
 												isUser
 													? "bg-primary text-primary-foreground"
 													: "border border-border/70 bg-background"
@@ -97,7 +99,7 @@ export function MessageList({ modelId, items, compact }: MessageListProps) {
 									</div>
 									{isUser ? (
 										<span className="mt-1 flex size-8 shrink-0 items-center justify-center rounded-xl bg-muted text-muted-foreground">
-											<UserRound className="size-4" aria-hidden="true" />
+											<User className="size-4" aria-hidden="true" />
 										</span>
 									) : null}
 								</article>
