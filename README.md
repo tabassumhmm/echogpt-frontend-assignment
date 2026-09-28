@@ -188,10 +188,10 @@ To deploy the live demo, run one command from the repository root and keep the p
 npx vercel deploy --prod
 ```
 
-After the deploy, add the URL here:
+The deployed demo:
 
 ```text
-Live demo: TODO after deploy
+Live demo: https://echogpt-frontend-assignment.vercel.app/
 ```
 
 Before you submit, make sure that the GitHub repository is public. Before you submit, make sure that you open the deployed URL in a browser. Do not test only the version on your own computer.
