@@ -1,10 +1,6 @@
+import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-	Bricolage_Grotesque,
-	Hanken_Grotesk,
-	Martian_Mono,
-} from "next/font/google";
 import type { ReactNode } from "react";
 
 import { ThemeScript } from "@/components/theme-script";
@@ -14,22 +10,26 @@ import { ThemeProvider } from "@/lib/theme";
 
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
-	subsets: ["latin"],
-	axes: ["opsz"],
+const bricolage = localFont({
+	src: "./fonts/bricolage-grotesque-latin.woff2",
+	weight: "200 800",
+	style: "normal",
 	variable: "--font-display",
 	display: "swap",
 });
 
-const hanken = Hanken_Grotesk({
-	subsets: ["latin"],
+const hanken = localFont({
+	src: "./fonts/hanken-grotesk-latin.woff2",
+	weight: "100 900",
+	style: "normal",
 	variable: "--font-hanken",
 	display: "swap",
 });
 
-const martianMono = Martian_Mono({
-	subsets: ["latin"],
-	weight: ["400", "700"],
+const martianMono = localFont({
+	src: "./fonts/martian-mono-latin.woff2",
+	weight: "100 800",
+	style: "normal",
 	variable: "--font-martian",
 	display: "swap",
 });

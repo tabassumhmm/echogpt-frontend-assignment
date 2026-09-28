@@ -95,7 +95,7 @@ The project uses these tools:
 - shadcn/ui and Radix UI
 - CSS animations with `prefers-reduced-motion` support
 - `@phosphor-icons/react` for icons
-- `Bricolage Grotesque`, `Hanken Grotesk`, and `Martian Mono` via `next/font`
+- `Bricolage Grotesque`, `Hanken Grotesk`, and `Martian Mono`, self-hosted as local woff2 files via `next/font/local`
 - Playwright for browser tests
 - `@axe-core/playwright` for accessibility tests
 - Biome and ESLint to find code problems
